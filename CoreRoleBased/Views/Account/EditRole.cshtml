@@ -1,0 +1,53 @@
+﻿@model CoreRoleBased.Models.ViewModel.EditViewRoleModel
+@{
+    ViewData["Title"] = "GetAllRole";
+}
+
+<h1>Edit Role</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EditRole" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div>@ViewBag.message</div>
+                <div class="form-group">
+                    <label asp-for="RoleId" class="control-label"></label>
+                    <input asp-for="RoleId" class="form-control" readonly />
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Role" class="control-label"></label>
+                    <input asp-for="Role" class="form-control" />
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Update Role" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+</div>
+
+    <div class="card">
+        <div class="card-body">
+            @if (Model.Users.Any())
+            {
+                foreach(var u in Model.Users)
+                {
+                    <h4>@u</h4>
+                }
+            }
+            else
+            {
+                <h3>No User assigned yet !</h3>
+            }
+        </div>
+        <div class="card-footer">
+                <a  asp-action="EditUserInRole" asp-controller="Account" asp-route-id="@Model.RoleId" class="btn btn-primary" style="width:auto">Add / Remove Users</a>
+        </div>
+    </div>
+
+</div>
